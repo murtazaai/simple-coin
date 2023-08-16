@@ -1,1 +1,1 @@
-# pythoncoin
+# A simple coin.
