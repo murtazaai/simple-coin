@@ -2,28 +2,28 @@ pragma solidity >=0.4.11 < 0.7.0;
 
 contract simple_coin_ico {
     
-    // Introducing maximum number of python coins for sale
-    uint256 public max_pythoncoins = 1000000;
+    // Introducing maximum number of  coins for sale
+    uint256 public max_coins = 1000000;
     
-    // Introducing the USD to python coins conversion relocatable
-    uint256 public usd_to_pythoncoins = 1000;
+    // Introducing the USD to  coins conversion relocatable
+    uint256 public usd_to_coins = 1000;
     
-    // Introducing the total number of pythoncoins that have been bought by the inverstors
-    uint256 public total_pythoncoins_bought = 0;
+    // Introducing the total number of coins that have been bought by the inverstors
+    uint256 public total_coins_bought = 0;
     
-    // Mapping from the investor address to its equity in pythoncoins and USD
-    mapping(address => uint256) equity_pythoncoins;
+    // Mapping from the investor address to its equity in coins and USD
+    mapping(address => uint256) equity_coins;
     mapping(address => uint256) equity_usd;
     
-    // Checking investor can buy pythoncoins
-    modifier can_buy_pythoncoins(uint256 usd_invested) {
-        require (usd_invested * usd_to_pythoncoins + total_pythoncoins_bought <= max_pythoncoins);
+    // Checking investor can buy coins
+    modifier can_buy_coins(uint256 usd_invested) {
+        require (usd_invested * usd_to_coins + total_coins_bought <= max_coins);
         _;
     }
     
-    // Getting the equity in pythoncoins of the investor
-    function equity_in_pythoncoins(address investor) public view returns (uint256) {
-        return equity_pythoncoins[investor];
+    // Getting the equity in coins of the investor
+    function equity_in_coins(address investor) public view returns (uint256) {
+        return equity_coins[investor];
     }
     
     // Getting the equity in USD of the investor
@@ -31,22 +31,22 @@ contract simple_coin_ico {
         return equity_usd[investor];
     }
     
-    //Buy pythoncoins
-    function buy_pythoncoin(address investor, uint256 usd_invested) public
-    can_buy_pythoncoins(usd_invested)
+    //Buy coins
+    function buy_coin(address investor, uint256 usd_invested) public
+    can_buy_coins(usd_invested)
     {
-        uint256 pythoncoins_bought = usd_invested * usd_to_pythoncoins;
-        equity_pythoncoins[investor] += pythoncoins_bought;
-        equity_usd[investor] = equity_pythoncoins[investor] / 1000;
-        total_pythoncoins_bought += pythoncoins_bought;
+        uint256 coins_bought = usd_invested * usd_to_coins;
+        equity_coins[investor] += coins_bought;
+        equity_usd[investor] = equity_coins[investor] / 1000;
+        total_coins_bought += coins_bought;
     }
     
-    //Sell pythoncoins
-    function sell_pythoncoins(address investor, uint256 pythoncoins_sold) public
+    //Sell coins
+    function sell_coins(address investor, uint256 coins_sold) public
     {
-        equity_pythoncoins[investor] += pythoncoins_sold;
-        equity_usd[investor] = equity_pythoncoins[investor] / 1000;
-        total_pythoncoins_bought -= pythoncoins_sold;
+        equity_coins[investor] += coins_sold;
+        equity_usd[investor] = equity_coins[investor] / 1000;
+        total_coins_bought -= coins_sold;
     }
     
 }

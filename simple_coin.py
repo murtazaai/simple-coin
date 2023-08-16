@@ -168,7 +168,7 @@ def connect_node():
     else:
         for node in nodes:
             blockchain.add_node(node)
-        response = {'message': 'All the nodes are now connected. The python blockchain now contains the following nodes',
+        response = {'message': 'All the nodes are now connected. The blockchain now contains the following nodes',
                    'total_nodes': list(blockchain.nodes)}
         return jsonify(response), 201
 
