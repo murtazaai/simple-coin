@@ -1,6 +1,6 @@
 pragma solidity >=0.4.11 < 0.7.0;
 
-contract pythoncoin_ico {
+contract simple_coin_ico {
     
     // Introducing maximum number of python coins for sale
     uint256 public max_pythoncoins = 1000000;
